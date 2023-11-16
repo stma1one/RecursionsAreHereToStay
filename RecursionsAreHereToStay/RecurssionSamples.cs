@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -65,6 +66,23 @@ namespace RecursionsAreHereToStay
         //return false;
         //ב. לא לשכוח קריאה רקורסיבית
 
+
+        public static bool IsExistV0(int num, int digit)
+        {
+            //אם ספרה בודדת- נחזיר אמת אם היא שווה לספרה ושקר אחרת
+            if (num == 0)
+            {
+                if (digit == 0)
+                    return true;
+                return false;
+            }
+                 
+            //אם המספר יותר מספרה אחת, נבדוק האם ספרת האחדות זהה לספרה שמחפשים
+            if (num % 10 == digit)
+                return true;
+            //אם לא זהה- נמשיך לחפש בשאר המספר
+            return IsExistV0(num / 10, digit);
+        }
         public static bool IsExistV1(int num,int digit)
         {
             //אם ספרה בודדת- נחזיר אמת אם היא שווה לספרה ושקר אחרת
@@ -86,9 +104,9 @@ namespace RecursionsAreHereToStay
 
             //חשבו-----> האם משנה אם נהפוך את סדר הבדיקה בתנאים
             //האם יש הבדל מהשורה הבאה?
-            //return (IsExistV2(num/10, digit)||(num%10==digit) );
+            return (IsExistV2(num/10, digit)||(num%10==digit) );
 
-            return ((num%10==digit) || IsExistV2(num/10, digit));
+            //return ((num%10==digit) || IsExistV2(num/10, digit));
         }
         #endregion
 
@@ -102,12 +120,35 @@ namespace RecursionsAreHereToStay
         {
             if (num / 10 == 0)
                 return true;
-            if (num / 10 % 2 == num % 2)
-                return true;
+            if (num / 10 % 2 != num % 2)
+                return false;
             return Kuku(num / 10);
         }
 
         #endregion
+
+        //שאלה 5
+        public static int Mana(int x,int y)
+        {
+            //אם המכנה 0
+            if(x==0)
+                return 0;
+            //אם המונה והמכנה שווים
+            if (x == y)
+                return 1;
+            //אם המונה גדול מהמכנה
+            if (Math.Abs(x) >= Math.Abs(y))
+            {
+                //אם שני המספרים שליליים או שניהם חיובים
+                if ((x < 0 && y < 0) || (x > 0 && y > 0))
+                    return 1 + Mana(x - y, y);
+                //אם סימנים מנוגדים
+                return -1*(1 +  Mana(Math.Abs(x) - Math.Abs(y), y));
+            }
+            //אם המכנה יותר גדול- מנת שלמים היא 0
+            return 0;
+
+        }
 
     }
 }

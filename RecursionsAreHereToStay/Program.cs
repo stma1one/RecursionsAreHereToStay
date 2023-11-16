@@ -84,6 +84,14 @@ namespace RecursionsAreHereToStay
             int result2 = RecurssionSamples.CountDigitsV2(num);
             bool result3 = RecurssionSamples.IsExistV1(num, 4);
             bool result4 = RecurssionSamples.IsExistV2(num, 4);
+            Console.WriteLine(RecurssionSamples.Mana(8, 4));
+            Console.WriteLine(RecurssionSamples.Mana(-8, 4));
+            Console.WriteLine(RecurssionSamples.Mana(-8, -4));
+            Console.WriteLine(RecurssionSamples.Mana(3, 4));
+            Console.WriteLine(RecurssionSamples.Mana(0, 4));
+
+
+
 
 
 
