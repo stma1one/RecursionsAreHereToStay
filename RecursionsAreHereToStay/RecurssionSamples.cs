@@ -130,7 +130,7 @@ namespace RecursionsAreHereToStay
         //שאלה 5
         public static int Mana(int x,int y)
         {
-            //אם המכנה 0
+            //אם המונה 0
             if(x==0)
                 return 0;
             //אם המונה והמכנה שווים
@@ -143,7 +143,7 @@ namespace RecursionsAreHereToStay
                 if ((x < 0 && y < 0) || (x > 0 && y > 0))
                     return 1 + Mana(x - y, y);
                 //אם סימנים מנוגדים
-                return -1*(1 +  Mana(Math.Abs(x) - Math.Abs(y), y));
+                return (-1)*(1 +  Mana(Math.Abs(x) - Math.Abs(y), y));
             }
             //אם המכנה יותר גדול- מנת שלמים היא 0
             return 0;
