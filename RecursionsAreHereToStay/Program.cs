@@ -74,9 +74,19 @@ namespace RecursionsAreHereToStay
        
         static void Main(string[] args)
         {
-            
-            Klik klik = new Klik();
-            Console.WriteLine(HowManyRecursive(klik));
+
+            //Klik klik = new Klik();
+            //Console.WriteLine(HowManyRecursive(klik));
+
+            Console.WriteLine("Please enter number");
+            int num=int.Parse(Console.ReadLine());
+            int result1 = RecurssionSamples.CountDigitsV1(num);
+            int result2 = RecurssionSamples.CountDigitsV2(num);
+            bool result3 = RecurssionSamples.IsExistV1(num, 4);
+            bool result4 = RecurssionSamples.IsExistV2(num, 4);
+
+
+
 
         }
     }
