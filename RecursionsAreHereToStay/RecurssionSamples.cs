@@ -196,7 +196,51 @@ namespace RecursionsAreHereToStay
             else
                 PrintEvenUpToNumV1(num - 1);
         }
-        #region
+        #endregion
+
+            #region תרגיל מהספר 1*2+2^2+3*2+4^2+...
+            //פתרון חישובי - מחזיר תוצאה
+            private static int SidraQuestionResult(int num)
+{
+   //תנאי עצירה 1*2
+    if(num==1)
+       {
+          return num*2;                   
+       }
+       //אם המספר הוא זוגי - נעלה בריבוע + סכום של השאר לפי הנוסחה
+     if(num%2==0)
+       return  num*num + SidraQuestionResult(num-1);
+        //אם אי זוגי - נחזיר את הערך * 2 + הסכום של שאר הערכים בסדרה
+     return num*2+SidraQuestionResult(num-1);
+}
+    
+     
+
+    
+   
+//פתרון הדפס 
+        //מדפיס את הנוסחה
+        //שאלה- מה קורה אם את ההדפסות הייתי עושה לפני הקריאה הרקורסיבית?
+  private static void SidraQuestion(int num)
+  {
+    //תנאי עצירה 1*2
+    if(num==1)
+       {
+         Console.Write($"{num}*2");
+       return;
+       }
+     //נצמצם את הבעיה עד שנגיע ל1
+     SidraQuestion(num-1);
+
+    //ערכים זוגיים נעלה בריבוע
+     if(num%2==0)
+        Console.Write($"+{num}^2");
+        //ערכים אי זוגיים נכפיל
+    else
+        Console.Write($"+{num}*2");
+   
+  }
+            #endregion 
 
     }
 }
