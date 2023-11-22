@@ -150,5 +150,53 @@ namespace RecursionsAreHereToStay
 
         }
 
+        public static int Fibonacchi(int n)
+        {
+            //האיבר הראשון הוא 0
+            if(n == 0) return 0;
+            //האיבר השני הוא 1
+            if(n==1) return 1;  
+            //כל איבר הוא סכום של שני האיברים הקודמים לו
+            return Fibonacchi(n-1)+Fibonacchi(n-2); 
+        }
+
+        #region פעולות VOID
+        /// <summary>
+        /// פעולה תדפיס רקורסיבית את כל המספרים הזוגיים בין 2 ל-num
+        /// </summary>
+        /// <param name="num"></param>
+        public static void PrintEvenUpToNumV1(int num)
+        {
+            //תנאי עצירה כשהגענו ל0 אם המספר היה זוגי או 1 אם המספר אי זוגי
+            if (num == 0 || num == 1) return;
+            //אם המספר זוגי נדפיס אותו ונדפיס את שאר המספרים הזוגיים בטוןח
+            if (num % 2 == 0)
+            {
+                Console.WriteLine(num);
+                PrintEvenUpToNumV1(num - 2);
+            }
+            //אחרת המספר הוא אי זוגי- אז לא נדפיס ונדפיס את שאר המספרים הזוגיים בטווח
+            else
+                PrintEvenUpToNumV1(num-1);  
+        }
+
+        public static void PrintEvenFrom2ToNum(int num)
+        {
+
+            //תנאי עצירה כשהגענו ל0 אם המספר היה זוגי או 1 אם המספר אי זוגי
+            if (num == 0 || num == 1) return;
+            //אם המספר זוגי נדפיס אותו ונדפיס את שאר המספרים הזוגיים בטוןח
+            if (num % 2 == 0)
+            {
+                //קודם נבצע את הרקורסיה
+                PrintEvenUpToNumV1(num - 2);
+                Console.WriteLine(num);
+            }
+            //אחרת המספר הוא אי זוגי- אז לא נדפיס ונדפיס את שאר המספרים הזוגיים בטווח
+            else
+                PrintEvenUpToNumV1(num - 1);
+        }
+        #region
+
     }
 }
