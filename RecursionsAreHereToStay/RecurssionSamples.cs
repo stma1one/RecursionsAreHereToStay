@@ -198,5 +198,113 @@ namespace RecursionsAreHereToStay
         }
         #region
 
+        #region רקורסיה על מערכים
+        #region מציאת מקסימום
+        //אופציה 1 : 
+        //נשתמש בפרמטרים  max,i 
+        //לפרמטרים של הפעולה
+        //i- למעבר על תאי המערך
+        //max- למקסימום עד התא ה i
+        public static int RecMaxInArray(int[] arr, int max, int i)
+        {
+            //תנאי עצירה כשהגענו לסוף המערך
+            if (i == arr.Length)
+            {
+                //אם סיימנו לסרוק- נחזיר את המקסימום שמצאנו עד כה
+                return max;
+            }
+            //אם לא הגענו לסוף נבדוק אם הערך הנוכחי גדול מהערך המקסימלי הנוכחי 
+            if (arr[i] > max)
+                max = arr[i];
+            //נקדם את i 
+            //באמצעות הקריאה הרקוסיבית שנשלח אליה את ה
+            //max הנוכחי
+            //והמיקום התא הבא לסריקה
+            return RecMaxInArray(arr, max, i + 1);
+
+        }
+
+        //חלופה ב: 
+        //דרך נוספת ללא העברת הפרמטר MAX
+      
+        //נשתמש בפעולת MATH.MAX
+        //זה הערך המקסימלי מבין התא הנוכחי במערך לבין המקסימום של שאר התאים שאחריו במערך
+        //המקסימום של תא האחרון במערך הוא הערך שלו עצמו כי אין עוד תאים להשוואה
+        private static int RecMaxInArray(int[] arr, int i)
+        {
+            //המקסימום בין התא האחרון לתאריך שאחריו הוא הוא עצמו
+            if (i == arr.Length - 1)
+            {
+                return arr[i];
+            }
+            //נחזיר את המקסימום שבין התא הנוכחי לאלו שבאים אחריו
+            return Math.Max(arr[i], RecMaxInArray(arr, i + 1));
+        }
+
+        //חלופה ב1
+        //אם נרצה פעולה שתסתיר את הפרמטר שאיתו סורקים את המערך
+        //נגדיר פעולת מעטפת
+        //שקוראת לפעולה הרקורסיבית
+        public static int RecMaxInArray(int[] arr)
+        {
+            return RecMaxInArray(arr, 0);
+        }
+        #endregion
+
+        #region סכום מערך
+        private static int SumArray(int[] arr, int i)
+        {
+            //אם עוד לא הגענו לסוף המערך
+            if(i<=arr.Length-1)
+            {
+                //הערך של תא הנוכחי + סכום של שאר תאי המערך
+                return arr[i]+SumArray(arr, i+1);
+
+            }
+            //אם הגענו לסוף המערך
+            return 0;
+        }
+        public static int SumArray(int[] arr) { return SumArray(arr, 0);}
+
+        //מעבר מסוף המערך להתחלה
+        private static int SumArrayFromEnd(int[] arr,int i)
+        {
+            //אם הגענו לתא הראשון במערך
+            if (i == 0)
+                return arr[0];
+            return arr[i]+ SumArrayFromEnd(arr,i-1);    
+        }
+        public static int SumArrayFromEnd(int[] arr)
+        { return SumArrayFromEnd(arr,arr.Length-1); }
+        #endregion
+
+
+        #region פעולות בוליאניות
+        public static bool IsExists(int[] arr, int num, int i)
+        {
+            //חלופה 1
+            //אם הגעתי לתא האחרון נחזיר האם הערך נמצא שם או לא נמצא
+            if (i == arr.Length - 1)
+                return arr[i] == num;
+            /*חלופה 2
+             *אם עברנו על כל התאים כולל האחרון - לא מצאנו
+             * if(i==arr.Length)
+             * return false;
+             */
+
+            //אופציה אחת
+            //אם מצאנו את הערך בדרך
+            if (arr[i] == num)
+                return true;
+            return IsExists(arr, num,i + 1);
+            /* אופציה 2
+             * כתיבה כתנאי של או
+             * return arr[i]==num||IsExists(arr,num,i+1);
+             */
+
+        }
+        #endregion
+        #endregion
+
     }
 }
